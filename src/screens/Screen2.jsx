@@ -37,10 +37,13 @@ const Screen2 = ({ navigation, route }) => {
     }
   }, [route.params?.name]);
   const [search, setSearch] = React.useState("");
-
+  const filteredData = DATA.filter((item) =>
+    item.title.toLowerCase().includes(search.toLowerCase())
+  );
   const ItemData = ({ title }) => (
     <View style={styles.item}>
-      <Text style={styles.filter}>{title}</Text>
+      <AntDesign name="checksquare" size={30} color={"green"}></AntDesign>
+      <Text style={[styles.filter, {marginStart: 24}]}>{title}</Text>
     </View>
   );
 
@@ -70,8 +73,8 @@ const Screen2 = ({ navigation, route }) => {
           right={<TextInput.Icon icon="magnify" color={"purple"} />}
           value={search}
         />
-      <FlatList
-        data={DATA}
+      <FlatList  
+        data={filteredData}
         renderItem={({ item }) => <ItemData title={item.title} />}
         keyExtractor={(item) => item.id}
       ></FlatList>
@@ -83,7 +86,8 @@ const Screen2 = ({ navigation, route }) => {
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 45,
-          }}>
+          }}
+          >
           <AntDesign name="plus" size={30} color={"white"}></AntDesign>
         </TouchableOpacity>
       </View>
@@ -116,8 +120,8 @@ const styles = StyleSheet.create({
   item: {
     borderRadius: 5,
     marginRight: 16,
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: "row",
+    padding: 12,
   },
   filter: {
     paddingVertical: 8,

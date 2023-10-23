@@ -3,7 +3,7 @@ import React from "react";
 import Image95 from "../../assets/Image 95.png"
 import { TextInput } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
-const Screen1 = ({ navigation, route }) => {
+const Screen1 = ({ navigation }) => {
     const [name, setName] = React.useState("");
   return (
     <View style={styles.container}>
